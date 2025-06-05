@@ -66,8 +66,54 @@ This document describes the high-level architecture and folder structure of the 
 
 ---
 
-## Theming System
+## State Management: Zustand
 
+This template uses **Zustand** for global and feature-level state management, following enterprise best practices and the project rules:
+
+- **Type safety:** All stores are fully typed with TypeScript interfaces.
+- **Modularity:** Each feature or domain should have its own store in `src/state/featureNameStore.ts`.
+- **Colocation:** State logic is colocated with features for maintainability and testability.
+- **SOLID/DRY:** Stores expose only the minimal API needed for components, and logic is encapsulated.
+
+### Example: Global App Store
+
+```ts
+// src/state/useAppStore.ts
+import { create } from 'zustand';
+
+export interface AppState {
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
+}
+
+export const useAppStore = create<AppState>((set) => ({
+  sidebarOpen: false,
+  setSidebarOpen: (open) => set({ sidebarOpen: open }),
+}));
+```
+
+### Usage in a Component
+```tsx
+import { useAppStore } from '@/state/useAppStore';
+
+const SidebarToggle = () => {
+  const { sidebarOpen, setSidebarOpen } = useAppStore();
+  return (
+    <button onClick={() => setSidebarOpen(!sidebarOpen)}>
+      {sidebarOpen ? 'Close' : 'Open'} Sidebar
+    </button>
+  );
+};
+```
+
+### Rationale
+- Zustand is simple, fast, and works seamlessly with React Server Components and SSR.
+- No provider is needed; stores are tree-shakable and testable.
+- For larger apps, organize stores by feature/module for maintainability.
+
+---
+
+## Theming System
 The template uses a robust, token-based theming system for all UI primitives, supporting both light and dark modes. All theme tokens are defined as CSS variables in `src/app/globals.css` and are consumed by Tailwind utility classes and custom CSS.
 
 #### Light Theme
