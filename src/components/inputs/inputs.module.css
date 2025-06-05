@@ -1,0 +1,21 @@
+/* Theme-compliant input styles for all input primitives */
+.input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  font-size: var(--input-size);
+  line-height: var(--input-line);
+  color: var(--input-color);
+  padding: var(--input-padding);
+  font-family: var(--main-font);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--button-border);
+  box-shadow: 0 0 0 2px var(--button-bg33, rgba(47,76,221,0.2));
+}
+.input[aria-invalid="true"] {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px #fee2e2;
+}
