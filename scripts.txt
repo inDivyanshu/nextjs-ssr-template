@@ -1,0 +1,23 @@
+# Common project scripts for Next.js SSR Template
+
+# Start development server (with Turbopack)
+yarn dev
+
+# Build production bundle
+yarn build
+
+# Start production server
+yarn start
+
+# Lint codebase
+yarn lint
+
+# Build Docker image
+docker build -t your-docker-repo/nextjs-ssr-template:latest .
+
+# Push Docker image to registry
+docker push your-docker-repo/nextjs-ssr-template:latest
+
+# Deploy to Kubernetes (from project root)
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml

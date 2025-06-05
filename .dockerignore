@@ -1,0 +1,12 @@
+node_modules
+.next
+Dockerfile
+.git
+.gitignore
+dist
+coverage
+*.log
+yarn-error.log
+npm-debug.log
+.env
+.env.*
