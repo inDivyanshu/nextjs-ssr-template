@@ -19,13 +19,12 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ name, label, error, ...pr
       <div className="relative">
         <input
           id={name}
-          name={name}
           type={show ? 'text' : 'password'}
           className={`w-full pr-10 ${styles.input} ${error ? 'border-red-500' : ''}`}
           aria-invalid={!!error}
           aria-describedby={error ? `${name}-error` : undefined}
           {...props}
-          ref={form?.register ? form.register(name) : undefined}
+          {...(form?.register ? form.register(name) : {})}
         />
         <button
           type="button"

@@ -16,13 +16,12 @@ const CheckboxInput: React.FC<CheckboxInputProps> = ({ name, label, error, ...pr
     <div className="mb-4 flex items-center">
       <input
         id={name}
-        name={name}
         type="checkbox"
         className={`mr-2 ${styles.input}`}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : undefined}
         {...props}
-        ref={form?.register ? form.register(name) : undefined}
+        {...(form?.register ? form.register(name) : {})}
       />
       <label htmlFor={name} className="font-medium" style={{ color: 'var(--form-label-color)' }}>{label}</label>
       {error && <span id={`${name}-error`} className="text-xs text-red-500 ml-2">{error}</span>}

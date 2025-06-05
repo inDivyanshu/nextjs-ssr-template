@@ -17,14 +17,13 @@ const RadioInput: React.FC<RadioInputProps> = ({ name, label, value, error, ...p
     <div className="mb-4 flex items-center">
       <input
         id={`${name}-${value}`}
-        name={name}
         type="radio"
         value={value}
         className={`mr-2 ${styles.input}`}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : undefined}
         {...props}
-        ref={form?.register ? form.register(name) : undefined}
+        {...(form?.register ? form.register(name) : {})}
       />
       <label htmlFor={`${name}-${value}`} className="font-medium" style={{ color: 'var(--form-label-color)' }}>{label}</label>
       {error && <span id={`${name}-error`} className="text-xs text-red-500 ml-2">{error}</span>}

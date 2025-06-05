@@ -18,12 +18,11 @@ const SelectInput: React.FC<SelectInputProps> = ({ name, label, error, options, 
       <label htmlFor={name} className="block mb-1 font-medium" style={{ color: 'var(--form-label-color)' }}>{label}</label>
       <select
         id={name}
-        name={name}
         className={`w-full ${styles.input} ${error ? 'border-red-500' : ''}`}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : undefined}
         {...props}
-        ref={form?.register ? form.register(name) : undefined}
+        {...(form?.register ? form.register(name) : {})}
       >
         <option value="" disabled>Select...</option>
         {options.map(opt => (

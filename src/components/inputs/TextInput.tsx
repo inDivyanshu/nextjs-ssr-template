@@ -17,12 +17,11 @@ const TextInput: React.FC<TextInputProps> = ({ name, label, error, ...props }) =
       <label htmlFor={name} className="block mb-1 font-medium" style={{ color: 'var(--form-label-color)' }}>{label}</label>
       <input
         id={name}
-        name={name}
         className={`w-full ${styles.input} ${error ? 'border-red-500' : ''}`}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : undefined}
         {...props}
-        ref={form?.register ? form.register(name) : undefined}
+        {...(form?.register ? form.register(name) : {})}
       />
       {error && <span id={`${name}-error`} className="text-xs text-red-500 mt-1 block">{error}</span>}
     </div>
