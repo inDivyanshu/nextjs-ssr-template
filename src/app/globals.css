@@ -1,15 +1,127 @@
 @import "tailwindcss";
 
+/* MiFin Website Theme Variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --heading-font: 'Poppins', sans-serif;
+  --main-font: 'Poppins', sans-serif;
+  --form-font: 'Open Sans', sans-serif;
+  --heading1-size: 30px;
+  --heading1-color: #435179;
+  --heading2-size: 20px;
+  --heading2-color: #3E4954;
+  --tab-bg: #fff;
+  --tab-border: #E5EAF2;
+  --tab-font: #435179;
+  --tab-active-bg: #F3F5FF;
+  --tab-active-border: #2F4CDD;
+  --tab-active-font: #2F4CDD;
+  --tab-size: 15px;
+  --tab-padding: 12px 20px;
+  --button-bg: #2F4CDD;
+  --button-border: #2F4CDD;
+  --button-font: 'Poppins', sans-serif;
+  --button-size: 16px;
+  --button-color: #fff;
+  --button-line: 24px;
+  --button-padding: 12px 20px;
+  --button-blue-border-bg: #fff;
+  --button-blue-border-color: #2F4CDD;
+  --button-blue-border-font: #2F4CDD;
+  --form-button-bg: #175cff;
+  --form-button-border: #175cff;
+  --form-button-font: 'Open Sans', sans-serif;
+  --form-button-size: 15px;
+  --form-button-color: #fff;
+  --form-button-line: 26px;
+  --form-button-padding: 12px 20px;
+  --main-content-color: #3E4954;
+  --main-content-size: 14px;
+  --main-content-line: 24px;
+  --form-label-size: 14px;
+  --form-label-color: #000;
+  --form-label-line: 24px;
+  --input-bg: #fff;
+  --input-border: #D6D6D6;
+  --input-radius: 8px;
+  --input-size: 15px;
+  --input-line: 24px;
+  --input-color: #3E4954;
+  --input-padding: 8px 16px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/*
+  Explicit .dark selector for dark theme variables, supporting both system and user toggle.
+  This ensures that switching via class (Tailwind dark mode) or prefers-color-scheme both work.
+*/
+/*
+  Enterprise-grade dark theme: rich backgrounds, high contrast, modern SaaS blue accents, and improved depth.
+  These tokens are visually distinct from light mode and follow enterprise and MiFin design best practices.
+*/
+.dark {
+  /* Layered backgrounds for depth */
+  --background: #101624; /* main app bg: deep navy, not pure black */
+  --foreground: #f4f6fa; /* high contrast, but not pure white */
+
+  /* Typography */
+  --heading-font: 'Poppins', sans-serif;
+  --main-font: 'Poppins', sans-serif;
+  --form-font: 'Open Sans', sans-serif;
+  --heading1-size: 30px;
+  --heading1-color: #e0e7ff; /* soft blue-tinted white for hero headings */
+  --heading2-size: 20px;
+  --heading2-color: #b3b9d6; /* muted blue-gray for subheadings */
+
+  /* Tabs */
+  --tab-bg: #181f2e; /* surface background */
+  --tab-border: #28304a; /* subtle border */
+  --tab-font: #c3cbe9; /* muted blue-gray */
+  --tab-active-bg: #233162; /* vibrant blue surface for active tab */
+  --tab-active-border: #4f8cff; /* saturated blue border for active */
+  --tab-active-font: #e0e7ff; /* white/blue for active text */
+  --tab-size: 15px;
+  --tab-padding: 12px 20px;
+
+  /* Buttons */
+  --button-bg: #4f8cff; /* primary blue */
+  --button-border: #4f8cff;
+  --button-font: 'Poppins', sans-serif;
+  --button-size: 16px;
+  --button-color: #fff;
+  --button-line: 24px;
+  --button-padding: 12px 20px;
+  --button-blue-border-bg: #181f2e; /* outlined button surface */
+  --button-blue-border-color: #4f8cff;
+  --button-blue-border-font: #4f8cff;
+
+  /* Form Buttons */
+  --form-button-bg: #233162; /* slightly muted blue for secondary/form */
+  --form-button-border: #4f8cff;
+  --form-button-font: 'Open Sans', sans-serif;
+  --form-button-size: 15px;
+  --form-button-color: #e0e7ff;
+  --form-button-line: 26px;
+  --form-button-padding: 12px 20px;
+
+  /* Main content/body text */
+  --main-content-color: #c3cbe9;
+  --main-content-size: 14px;
+  --main-content-line: 24px;
+
+  /* Form Labels */
+  --form-label-size: 14px;
+  --form-label-color: #b3b9d6;
+  --form-label-line: 24px;
+
+  /* Inputs */
+  --input-bg: #181f2e; /* input surface */
+  --input-border: #28304a; /* subtle border */
+  --input-radius: 8px;
+  --input-size: 15px;
+  --input-line: 24px;
+  --input-color: #e0e7ff;
+  --input-padding: 8px 16px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +134,89 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--main-font);
+}
+
+/* Typography */
+h1 {
+  font-family: var(--heading-font);
+  font-size: var(--heading1-size);
+  color: var(--heading1-color);
+}
+h2 {
+  font-family: var(--heading-font);
+  font-size: var(--heading2-size);
+  color: var(--heading2-color);
+}
+.main-content {
+  color: var(--main-content-color);
+  font-family: var(--main-font);
+  font-size: var(--main-content-size);
+  line-height: var(--main-content-line);
+}
+
+/* Tabs */
+.tab {
+  background: var(--tab-bg);
+  border: 1px solid var(--tab-border);
+  color: var(--tab-font);
+  font-size: var(--tab-size);
+  padding: var(--tab-padding);
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s;
+}
+.tab-active {
+  background: var(--tab-active-bg);
+  border-color: var(--tab-active-border);
+  color: var(--tab-active-font);
+}
+
+/* Buttons */
+.button-blue {
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  font-family: var(--button-font);
+  font-size: var(--button-size);
+  color: var(--button-color);
+  line-height: var(--button-line);
+  padding: var(--button-padding);
+  border-radius: 8px;
+}
+.button-blue-border {
+  background: var(--button-blue-border-bg);
+  border: 1px solid var(--button-blue-border-color);
+  font-family: var(--button-font);
+  font-size: var(--button-size);
+  color: var(--button-blue-border-font);
+  line-height: var(--button-line);
+  padding: var(--button-padding);
+  border-radius: 8px;
+}
+.button-form {
+  background: var(--form-button-bg);
+  border: 1px solid var(--form-button-border);
+  font-family: var(--form-button-font);
+  font-size: var(--form-button-size);
+  color: var(--form-button-color);
+  line-height: var(--form-button-line);
+  padding: var(--form-button-padding);
+  border-radius: 8px;
+}
+
+/* Forms */
+label {
+  font-size: var(--form-label-size);
+  color: var(--form-label-color);
+  line-height: var(--form-label-line);
+}
+
+input, textarea, select {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  font-size: var(--input-size);
+  line-height: var(--input-line);
+  color: var(--input-color);
+  padding: var(--input-padding);
+  font-family: var(--main-font);
 }
